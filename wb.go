@@ -2,7 +2,7 @@ package wb
 
 import (
 	"encoding/json"
-	"os"
+	"io/ioutil"
 	"path"
 	"runtime"
 )
@@ -25,7 +25,7 @@ type Bank struct {
 func GetNigerianBanks() ([]Bank, error) {
 	var banks []Bank
 	_, fn, _, _ := runtime.Caller(0)
-	banksJson, err := os.ReadFile(path.Join(path.Dir(fn), "/data/nigeria.json"))
+	banksJson, err := ioutil.ReadFile(path.Join(path.Dir(fn), "/data/nigeria.json"))
 	if err != nil {
 		return banks, err
 	}
